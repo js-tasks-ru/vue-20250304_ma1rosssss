@@ -26,10 +26,11 @@ export default defineComponent({
       <h1 class="title">Погода в Средиземье</h1>
 
       <ul class="weather-list unstyled-list">
-        <li v-for="weather in weatherData" class="weather-card" :class="weather.current.dt < weather.current.sunrise ? 'weather-card--night' : null">
+        <li v-for="weather in weatherData" class="weather-card"
+          :class="{ 'weather-card--night': weather.current.dt < weather.current.sunrise }">
           <div v-if='weather.current.weather.main === "Thunderstorm"' class="weather-alert">
             <span class="weather-alert__icon">⚠️</span>
-            <span class="weather-alert__description">Королевская метеослужба короля Арагорна II: Предвещается наступление сильного шторма.</span>
+            <span class="weather-alert__description">{{ weather.alert.sender_name }}: {{  weather.alert.description }}</span>
           </div>
           <div>
             <h2 class="weather-card__name">
