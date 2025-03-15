@@ -37,7 +37,7 @@ export default defineComponent({
       <button
         class="button button--secondary"
         type="button"
-        aria-label="increment"
+        aria-label="Increment"
         @click="increment"
         :disabled="count === 5"
       >➕</button>
