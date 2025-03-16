@@ -1,12 +1,7 @@
-
 import { defineComponent, ref } from 'vue'
-
-
-
 
 export default defineComponent({
   name: 'CounterApp',
-
 
   setup() {
     const count = ref(0)
@@ -26,9 +21,6 @@ export default defineComponent({
     }
   },
 
-  setup() {},
-
-
   template: `
     <div class="counter">
       <button
@@ -43,10 +35,7 @@ export default defineComponent({
 
       <span class="count" data-testid="count">{{ count }}</span>
 
-        disabled
-      >➖</button>
 
-      <span class="count" data-testid="count">0</span>
 
 
       <button
