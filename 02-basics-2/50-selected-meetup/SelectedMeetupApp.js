@@ -1,10 +1,17 @@
-import { defineComponent } from 'vue'
-// import { getMeetup } from './meetupsService.ts'
+import { defineComponent, ref } from 'vue'
+import { getMeetup } from './meetupsService.ts'
 
 export default defineComponent({
   name: 'SelectedMeetupApp',
 
-  setup() {},
+  setup() {
+    const meetup = ref('')
+
+    return {
+      meetup,
+      getMeetup,
+    }
+  },
 
   template: `
     <div class="meetup-selector">
@@ -69,7 +76,7 @@ export default defineComponent({
 
       <div class="meetup-selector__cover">
         <div class="meetup-cover">
-          <h1 class="meetup-cover__title">Some Meetup Title</h1>
+          <h1 class="meetup-cover__title"> {{ getMeetup.title }} </h1>
         </div>
       </div>
 
