@@ -45,7 +45,7 @@ export default defineComponent({
 
   template: `
     <div>
-       <WeatherTitle  title="Погода в Средиземье"/>
+       <WeatherTitle  :title="Погода в Средиземье"/>
 
       <ul  class="weather-list unstyled-list">
         <li v-for="weather in weatherData" class="weather-card " :class="{ 'weather-card--night': weather.current.dt < weather.current.sunrise }">
