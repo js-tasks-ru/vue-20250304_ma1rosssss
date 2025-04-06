@@ -27,7 +27,7 @@ export default defineComponent({
     })
 
     const formatTemp = kelvin => {
-      return (kelvin - 273.15).toFixed(1)
+      return parseFloat(kelvin - 273.15).toFixed(1)
     }
 
     const hpa = hpa => {
@@ -48,19 +48,19 @@ export default defineComponent({
        <WeatherTitle />
 
       <ul  class="weather-list unstyled-list">
-        <li v-if="weatherAlert" class="weather-card weather-card--night">
+        <li v-for="weather in weatherData" class="weather-card " :class="{ 'weather-card--night': weather.current.dt < weather.current.sunrise }">
 
-          <WeatherAlert :alertName="weatherAlert.alert.sender_name" :alertDesc="weatherAlert.alert.description"/>
+          <WeatherAlert v-if="weather === weatherAlert" :alertName="weatherAlert.alert.sender_name" :alertDesc="weatherAlert.alert.description"/>
 
-          <WeatherCard :cardName="weatherAlert.geographic_name" :cardTime="weatherAlert.current.dt"/>
+          <WeatherCard :cardName="weather.geographic_name" :cardTime="weather.current.dt"/>
 
-          <WeatherConditions :weatherTemp="formatTemp(weatherAlert.current.temp)" :weatherIcon="icons[weatherAlert.current.weather.id]"/>
+          <WeatherConditions :weatherDesc="weather.current.weather.description" :weatherTemp="formatTemp(weather.current.temp)" :weatherIcon="icons[weather.current.weather.id]"/>
 
           <WeatherDetails
-            :pressure="hpa(weatherAlert.current.pressure)"
-            :humidity="weatherAlert.current.humidity"
-            :clouds="weatherAlert.current.clouds"
-            :windSpeed="weatherAlert.current.wind_speed"
+            :pressure="hpa(weather.current.pressure)"
+            :humidity="weather.current.humidity"
+            :clouds="weather.current.clouds"
+            :windSpeed="weather.current.wind_speed"
           />
         </li>
       </ul>
