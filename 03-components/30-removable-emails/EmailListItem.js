@@ -15,11 +15,11 @@ export default defineComponent({
     },
   },
 
-  emits: ['removeBtn'],
+  emits: ['remove'],
 
   setup(props, { emit }) {
     const handleRemove = () => {
-      emit('removeBtn')
+      emit('remove')
     }
 
     return {
